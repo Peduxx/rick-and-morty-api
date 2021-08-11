@@ -1,24 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import CharacterItem from "./components/CharacterItem";
+import api from "./services/api";
+
+interface ICharacter {
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  type: string;
+  gender: string;
+  image: string;
+  origin: {
+    name: string;
+    url: string;
+  };
+  location: {
+    name: string;
+    url: string;
+  };
+}
 
 function App() {
+  const [characters, setCharacters] = useState([]);
+
+  useEffect(() => {
+    const getCharacters = async () => {
+      const { data } = await api.get("/character/?page=2");
+
+      setCharacters(data.results);
+    };
+
+    getCharacters();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Personagens</h1>
+      <ul>
+        {characters.map((character: ICharacter) => (
+          <li key={character.id}>
+            <CharacterItem character={character} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
