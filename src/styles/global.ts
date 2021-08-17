@@ -30,6 +30,9 @@ html{
 body{
     background: var(--background);
     -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 body, input, textarea, input{
@@ -39,11 +42,6 @@ body, input, textarea, input{
 
 ul {
   list-style: none;
-  li{
-    & + li {
-      margin-top: 5rem;
-    }
-  }
 }
 
 p{
@@ -59,4 +57,4 @@ h1, h2, h3, h4, h5, h6, strong{
     text-align: center;
 }
 
-`
+`;

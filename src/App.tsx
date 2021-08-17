@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CharacterItem from "./components/CharacterItem";
 import api from "./services/api";
-import {ContentButtons, ContentList, Content} from "./styles";
-import { Next, Back } from "./services/buttonAction"
+import { ContentButtons, ContentList, Content } from "./styles";
 
 interface ICharacter {
   id: number;
@@ -24,7 +23,15 @@ interface ICharacter {
 
 function App() {
   const [characters, setCharacters] = useState([]);
-  const currentPage = 1;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const nextPage = () => {
+    if (currentPage <= 34) setCurrentPage((current) => current + 1);
+  };
+
+  const previousPage = () => {
+    if (currentPage > 1) setCurrentPage((current) => current - 1);
+  };
 
   useEffect(() => {
     const getCharacters = async () => {
@@ -34,24 +41,26 @@ function App() {
     };
 
     getCharacters();
-  }, []);
+  }, [currentPage]);
 
   return (
     <Content>
-    <ContentList>
-      <ul>
-        <h1>Personagens</h1>
-        {characters.map((character: ICharacter) => (
-          <li key={character.id}>
-            <CharacterItem character={character} />
+      <h1>Personagens</h1>
+      <ContentList>
+        <ul>
+          {characters.map((character: ICharacter) => (
+            <li key={character.id}>
+              <CharacterItem character={character} />
+            </li>
+          ))}
+          <li>
+            <ContentButtons>
+              <button onClick={() => previousPage()}>Back</button>
+              <button onClick={() => nextPage()}>Next</button>
+            </ContentButtons>
           </li>
-        ))}
-      </ul>
-    </ContentList>
-    <ContentButtons>
-      <button onClick={() => (Next(currentPage))}>Back</button>
-      <button>Next</button>
-    </ContentButtons>
+        </ul>
+      </ContentList>
     </Content>
   );
 }

@@ -1,3 +1,6 @@
+import {List} from "../styles";
+
+
 interface CharacterItemProps {
   character: {
     name: string;
@@ -19,24 +22,27 @@ interface CharacterItemProps {
 
 function CharacterItem(props: CharacterItemProps) {
   return (
-    <>
+    <List>
       <img src={props.character.image} alt="" />
-      <p>Nome: {props.character.name}</p>
-      <p>Status: {props.character.status}</p>
-      <p>Espécie: {props.character.species}</p>
-      <p>Tipo: {props.character.type}</p>
-      <p>Gênero: {props.character.gender}</p>
-      <p>
-        Origem:{" "}
-        <a href={props.character.origin.url}>{props.character.origin.name}</a>
-      </p>
-      <p>
-        Onde vive:{" "}
-        <a href={props.character.location.url}>
-          {props.character.location.name}
-        </a>
-      </p>
-    </>
+
+      <div className="content"> 
+        <p>Nome: {props.character.name}</p>
+        <p>Status: {props.character.status}</p>
+        <p>Espécie: {props.character.species}</p>
+        <p>Tipo: {props.character.type}</p>
+        <p>Gênero: {props.character.gender}</p>
+        <p>
+          Origem:{" "}
+          <a href={props.character.origin.url}>{props.character.origin.name}</a>
+        </p>
+        <p>
+          Onde vive:{" "}
+          <a href={props.character.location.url}>
+            {props.character.location.name}
+          </a>
+        </p>
+      </div>
+    </List>
   );
 }
 
