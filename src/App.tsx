@@ -53,14 +53,17 @@ function App() {
               <CharacterItem character={character} />
             </li>
           ))}
-          <li>
-            <ContentButtons>
-              <button onClick={() => previousPage()}>Back</button>
-              <button onClick={() => nextPage()}>Next</button>
-            </ContentButtons>
-          </li>
         </ul>
       </ContentList>
+
+      <ContentButtons>
+        <button id="backButton" onClick={() => previousPage()}>
+          Back
+        </button>
+        <button id="nextButton" onClick={() => nextPage()}>
+          Next
+        </button>
+      </ContentButtons>
     </Content>
   );
 }

@@ -1,12 +1,9 @@
 import styled from "styled-components";
 
 export const Content = styled.div`
-  max-width: 1120px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-content: center;
-  margin-left: 5rem;
 `;
 
 export const ContentList = styled.div`
@@ -30,22 +27,27 @@ export const ContentList = styled.div`
 `;
 
 export const ContentButtons = styled.div`
-  width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+  padding: 1.5rem;
 
   button {
+    width: 100%;
+    max-width: 280px;
+    padding: 1rem;
     font-size: 1rem;
     color: #fff;
     background: var(--blue-light);
     border: 0;
-    padding: 0 2rem;
     border-radius: 0.25rem;
     transition: 0.2s;
+    margin-left: 1.5rem;
 
     &:hover {
       filter: brightness(0.9);
+      cursor: pointer;
     }
   }
 `;
@@ -60,7 +62,6 @@ export const List = styled.div`
   margin-top: 1.5rem;
   height: 100%;
   max-height: 550px;
-  width: 350px;
 
   img {
     margin-top: 1.5rem;
